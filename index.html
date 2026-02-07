@@ -3,12 +3,75 @@
 <!DOCTYPE html>  
 
 <html>  
-<head>  
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>  
     lampada  
   </title>  
   <style>    
+    #lampada {
+      position: absolute;
+      width: 45vw;
+      height: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 50px;
+    }
+  
+  #botao1 {
+    position: absolute;
+    display: block;
+    left: 51%;
+    transform: translateX(-50%) scale(1);
+    top: 350px;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+  }
+  
+  #botao1:active {
+    transform: translateX(-50%) scale(0.9);
+  }
+  
+  #botao2 {
+    position: absolute;
+    display: block;
+    left: 51%;
+    transform: translateX(-50%) scale(1);
+    top: 425px;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+  }
+  
+  #botao2:active {
+    transform: translateX(-50%) scale(0.9);
+  }
+  
+  #botao3 {
+    position: absolute;
+    display: block;
+    left: 51%;
+    transform: translateX(-50%) scale(1);
+    top: 500px;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+  }
+  
+  #botao3:active {
+    transform: translateX(-50%) scale(0.9);
+  }
+  
+  #lampada.ligada {
+  filter: drop-shadow(0 0 40px #FFFF00) drop-shadow(0 0 80px #FFFF00);
+    
+}
+  
+  body {
+    background-color: black;
+    color: gray;
+  }
   
   </style>  
 </head>  
@@ -30,36 +93,38 @@
     LÂMPADA  
   </h2>  
   <br>  
-  <img id="lampada"  src="https://files.catbox.moe/a1p30r.png"  
+  <img id="lampada"  src="https://files.catbox.moe/t199si.png"  
 onclick="quebrar()">
 
   <br>  
   <script>  
   let quebrado = false;  
-  let lampada = document.getElementById("lampada");  function luz() {
-if (!quebrado) {
-lampada.src = "https://files.catbox.moe/ucm7rm.png";
-}
-}
+  let lampada = document.getElementById("lampada");  
+  function luz() {
+    if (!quebrado) {
+      lampada.src = "https://files.catbox.moe/xjja00.png"
+      lampada.classList.add("ligada");
+    }
+  }
 
 function apagar() {
 if (!quebrado) {
-lampada.src = "https://files.catbox.moe/a1p30r.png";
+lampada.src = "https://files.catbox.moe/t199si.png";
+  lampada.classList.remove("ligada");
 }
 }
 
 function quebrar() {
-lampada.src = "https://files.catbox.moe/vqvoyg.png";
+lampada.src = "https://files.catbox.moe/kaa1sa.png";
 quebrado = true;
 }
 
 function trocar() {
 if (quebrado) {
 
-lampada.src = "https://files.catbox.moe/a1p30r.png"  
+lampada.src = "https://files.catbox.moe/t199si.png"  
 quebrado = false;  
 }
-
 }
 
   </script>  
