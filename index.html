@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html>  
+
+<html>  
+<head>  
+  <title>  
+    lampada  
+  </title>  
+  <style>    
+  
+  </style>  
+</head>  
+<body>  
+  <button  
+    id="botao1"  
+    onclick="luz()">  
+    Acender      
+  </button>  
+    <button onclick="apagar()"  
+      id="botao2">  
+    Apagar  
+  </button>  
+  <button onclick="trocar()"  
+    id="botao3">  
+    Trocar Lampada  
+  </button>  
+  <h2>  
+    LÂMPADA  
+  </h2>  
+  <br>  
+  <img id="lampada"  src="https://files.catbox.moe/a1p30r.png"  
+onclick="quebrar()">
+
+  <br>  
+  <script>  
+  let quebrado = false;  
+  let lampada = document.getElementById("lampada");  function luz() {
+if (!quebrado) {
+lampada.src = "https://files.catbox.moe/ucm7rm.png";
+}
+}
+
+function apagar() {
+if (!quebrado) {
+lampada.src = "https://files.catbox.moe/a1p30r.png";
+}
+}
+
+function quebrar() {
+lampada.src = "https://files.catbox.moe/vqvoyg.png";
+quebrado = true;
+}
+
+function trocar() {
+if (quebrado) {
+
+lampada.src = "https://files.catbox.moe/a1p30r.png"  
+quebrado = false;  
+}
+
+}
+
+  </script>  
+</body>  
+</html> 
