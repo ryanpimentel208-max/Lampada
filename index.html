@@ -63,19 +63,76 @@
     transform: translateX(-50%) scale(0.9);
   }
   
-  #lampada.ligada {
+  #lampada.ligadaAm {
   filter: drop-shadow(0 0 40px #FFFF00) drop-shadow(0 0 80px #FFFF00);
     
 }
   
+  #lampada.ligadaAz {
+    filter: drop-shadow(0 0 40px #0000FF) drop-shadow(0 0 80px #0000FF)
+  }
+  
+  #lampada.ligadaVm {
+    filter: drop-shadow(0 0 40px #FF0000) drop-shadow(0 0 80px #FF0000)
+  }
+  
+  #lampada.ligadaRx {
+    filter: drop-shadow(0 0 40px purple) drop-shadow(0 0 80px purple);
+  }
+  
   body {
     background-color: black;
-    color: gray;
+    color: gray
+  }
+  
+  #janelinha {
+    position: absolute; /* eu real espero 
+    q esteja certo */
+    background-color: white;
+    width: 150px;
+    height: 100px;
+    top: 50%;
+    left: 30%;
+    transform: translateX(-50%, -50%);
+    border-radius: 12px;
+    background-color: gray;
+    z-index: 99999;
+  }
+  
+  #azu {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60px;
+    border-radius: 12px;
+  }
+  
+  #vermei {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5px;
+    border-radius: 12px;
   }
   
   </style>  
 </head>  
 <body>  
+  <div
+    id="janelinha">
+    <button onclick="azul()"
+      id="azu">
+      Hab (azul)
+    </button>
+    <button onclick="vermelho()"
+      id="vermei">
+      hab (Red)
+    </button>
+  </div>
   <button  
     id="botao1"  
     onclick="luz()">  
@@ -89,6 +146,10 @@
     id="botao3">  
     Trocar Lampada  
   </button>  
+  <button onclick="abrir()"
+    id="abri">
+    Abrir
+  </button>
   <h2>  
     LÂMPADA  
   </h2>  
@@ -99,18 +160,115 @@ onclick="quebrar()">
   <br>  
   <script>  
   let quebrado = false;  
+  
   let lampada = document.getElementById("lampada");  
+  
+  let af = document.getElementById("abri")
+  
+  let janelinha = document.getElementById("janelinha")
+  
+  let Azul = false;
+  
+  let Vermelho = false;
+  
+  let vermei = document.getElementById("vermei")
+  
+  let azu = document.getElementById("azu")
+  
+  janelinha.style.display = "none";
+  
+  // hora de mais functionss
+  
+  function azul() {
+    if (!Azul && !Vermelho) {
+      Azul = true;
+      
+    }
+    
+    else if (!Azul && Vermelho) {
+      if(confirm("Vermelho ja habilitado, caso habilite o azul a mistura da roxo")) {
+        Azul = true;
+        azu.innerText = "desab (azul)"
+      }
+     else {
+        Azul = false;
+    }
+    }
+    
+    else if (Azul && Vermelho) {
+  Azul = false;
+  azu.innerText = "hab (azul)";
+}
+    
+    else if (Azul && !Vermelho) {
+      Azul = false;
+      azu.innerText = "hab (azul)"
+    }
+  }
+  
+  function vermelho() {
+    if (!Azul && !Vermelho) {
+      Vermelho = true;
+      vermei.innerText = "desab (red)"
+    }
+    else if (Azul && !Vermelho) {
+      if(confirm("Azul ja habilitado, caso habilite o azul a mistura da roxo")) {
+        Vermelho = true;
+        vermei.innerText = "desab (vermei)"
+      }
+    }
+    
+    else if (Azul && Vermelho) {
+  Vermelho = false;
+  vermei.innerText = "hab (red)";
+}
+
+    else if (!Azul && Vermelho) {
+      Vermelho = false;
+      vermei.innerText = "hab (red)"
+    }
+  }
+  
+  function abrir() {
+    if (janelinha.style.display === "none") {
+      janelinha.style.display = "block";
+      abri.innerText = "fechar"
+    }
+    else {
+      janelinha.style.display = "none";
+      abri.innerText = "abrir"
+    }
+  }
+    
   function luz() {
     if (!quebrado) {
+      
+      if (!Azul && !Vermelho) {
       lampada.src = "https://files.catbox.moe/xjja00.png"
-      lampada.classList.add("ligada");
+      lampada.classList.add("ligadaAm");
+      }
+      else if (!Azul && Vermelho) {
+        lampada.src = "https://files.catbox.moe/gx6e39.png"
+        lampada.classList.add("ligadaVm");
+      }
+      else if (Azul && !Vermelho) {
+        lampada.src = "https://files.catbox.moe/2q5582.png"
+        lampada.classList.add("ligadaAz");
+      }
+      else if (Azul && Vermelho) {
+        lampada.src = "https://files.catbox.moe/pysqy1.png"
+        lampada.classList.add("ligadaRx");
+      }
     }
   }
 
 function apagar() {
 if (!quebrado) {
 lampada.src = "https://files.catbox.moe/t199si.png";
-  lampada.classList.remove("ligada");
+  lampada.classList.remove("ligadaAm");
+  lampada.classList.remove("ligadaAz");
+  lampada.classList.remove("ligadaVm");
+  lampada.classList.remove("ligadaRx");
 }
 }
 
@@ -129,4 +287,4 @@ quebrado = false;
 
   </script>  
 </body>  
-</html> 
+</html>
